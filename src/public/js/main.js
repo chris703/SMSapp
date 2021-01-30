@@ -1,6 +1,7 @@
+
 //const { listIndexes } = require("../../models/sms");
 
-//const { timeago } = require("../../libs/handlebars");
+// const { timeago } = require("../../libs/handlebars");
 
 const socket = io()
 
@@ -64,3 +65,7 @@ socket.on('new message',data =>{
 
     messagesList.prepend(li);
 })
+
+//code for navigation bar
+
+  //end navigation 

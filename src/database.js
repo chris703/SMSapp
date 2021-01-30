@@ -1,9 +1,16 @@
 const mongoose = require ('mongoose');
 
-mongoose.connect('mongodb://localhost/smsdb', {
+console.log(process.env.MONGODB_URI)
+mongoose.connect(process.env.MONGODB_URI, {
     useNewUrlParser:true,
     useUnifiedTopology:true
 
 })
-.then (db => console.log('db is connected'))
+/* mongoose.connect('mongodb://localhost/smsdb', {
+    useNewUrlParser:true,
+    useUnifiedTopology:true
+
+}) */
+
+.then (db => console.log('SMS db is connected'))
 .catch(err => console.log(err))

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/main.css">
+
+    <title>Menu</title>
+    <%-include ("./partials/head")%>
+</head>
+<body>
+  <%-include ("./partials/navigation.ejs")%>
+    
+<div class="container">
+<div class="row pt-5">
+  <div class="col-md-6">
+    <div class="card2" >
+      <img class="card-img-top" src="/css/sms.png" alt="Card image cap">
+      <div class="card-body text-center">
+        <h5 class="card-title ">SMS</h5>
+        <p class="card-text">Send individual texts for responding purpose</p>
+        <form action="/console" method="POST">
+        <input type="submit" class="btn btn-primary" value="Go to message console">
+      </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="card2" >
+      <img class="card-img-top" src="/css/bulksms.png" alt="Card image cap">
+      <div class="card-body text-center">
+        <h5 class="card-title ">BULK SMS</h5>
+        <p class="card-text">Upload a JSON file and send bulksms (less than 500 recomendly)
+        </p>
+        <form action="/upload" method="POST">
+        <input type="submit" class="btn btn-primary" value="Upload my List "> 
+      </form>
+      </div>
+  </div>
+</div>
+</div>
+</body>
+</html>

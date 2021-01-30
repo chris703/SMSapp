@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/main.css">
+    <script src= "/js/textarea.js"></script> 
+    
+     <%- include ('./partials/head.ejs') %>
+   
+    <title>Document</title>
+</head>
+<body class="bulk">
+
+    <%- include ('./partials/navigation.ejs') %>
+   
+   
+
+
+    
+    <div class="container p-4">
+        <div class="row">
+            <div class="col-md-4 offset-md-4 mb-8"> 
+              
+                <h2 class="">FILE UPLOADED</h2>
+              
+            </div> 
+        </div>
+    </div>
+    
+        <div class="col-md-12">
+            <div class="row">
+            <form action="/loadList" method="post">
+
+                
+
+           <select class = "opciones form-select mb-3" aria-label="No list Selected"  name= "contenido" id='opciones2' onchange='cambioOpciones();'>
+           <% files.forEach(function(file){ %>
+                <!--<option src="<%= file.path %>" value="<%= file.inputBulkText %>">-->
+                    <option id="opciones2"  value=" <%= file.content %>">
+                   
+                    <%= file.filename %>
+                   
+                </option>            
+              
+                <%}) %>
+                <% if (files){ %>
+                    <!-- <input type="text" class="" id="showId" disabled> -->
+               <textarea class= "areatexto form-control" style="height: 500px;" type="text" id="showId" value="<%=  %>" disabled ></textarea> 
+                
+                <%} %>
+               
+                   
+             
+                   
+
+                
+               
+                
+              
+               
+            </select>
+            <br>
+
+            <br>
+            <div class="text-center">
+            <button type="submit" id="sendBulksms" class="btn btn-outline-primary marginbutt">Send Bulks SMS</button>   
+            </div>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>
