@@ -37,53 +37,66 @@ const indexController = async (req,res) =>{
    
 
 const sendBulksms = async(req,res) =>{
-        console.log(config.notifyServiceSid);
-        console.log(config.authToken);
+        //console.log(config.notifyServiceSid);
+        //console.log(config.authToken);
         const nuevo  = req.body.contenido;
         const nuevo2 = JSON.parse(nuevo)
         //console.log(nuevo2);
-        var numbers;
-        for(var i=0;i<nuevo2.length;i++){
-            var numbers=JSON.stringify(nuevo2[i].Number1);
-            var address = nuevo2[i].Address;
-            var names = nuevo2[i].FirstName;
-            var city = nuevo2[i].City;
-           
-            
-            var mensaje = "Hi " + names +  " I'm a local investor here in "+ city + ". I purchased a property nearby and saw your house at " + address + ". Have you considered selling recently?";  
-            console.log( numbers + mensaje);
+        var numeros;
 
-            //sending function
+       
+        function enviar(){
+            // bucle para recorrer el array de los datos JSON
+            for (var j = 0 ; j< nuevo2.length; j++){
+                numeros=JSON.stringify(nuevo2[j].Number1);
+                var direccion = nuevo2[j].Address;
+                var nombre = nuevo2[j].FirstName;
+                var ciudad = nuevo2[j].City;
+               
+                //console.log(nombre);
+            
+                var mensaje = "Hi " + nombre +  " I'm a local investor here in "+ ciudad + ". I purchased a property nearby and saw your house at " + direccion + ". Have you considered selling recently?"; 
+                console.log( mensaje);
+            
+            
+            //console.log(numeros);
+            
+            
+            
+            
             function sendBulkMessages(messageBody, numberList) 
             { 
-            var numbers = []; 
-            for(i = 0; i < numberList.length; i++) 
-             { 
-            numbers.push(JSON.stringify({  
-            binding_type: 'sms', address: numberList[i]})) 
+                var numbers = []; 
+                for(i = 0; i < numberList.length; i++) 
+                { 
+                    numbers.push(JSON.stringify({  
+                        binding_type: 'sms', address: numberList[i]})) 
+                } 
+               
+                const notificationOpts = { 
+                  toBinding: numbers, 
+                  body: messageBody, 
+                  
+            
+                }; 
+            
+                client.notify 
+                //.services(NOTIFY_SERVICES_SID) 
+                .services(config.notifyServiceSid)
+                .notifications.create(notificationOpts) 
+                .then(notification => console.log(notification.sid)) 
+                .catch(error => console.log(error)); 
+            
             } 
-   
-    const notificationOpts = { 
-      toBinding: numbers, 
-      body: messageBody, 
-      
-
-        }; 
-
-    client.notify 
-    .services(config.notifyServiceSid)
-    
-    //.services(NOTIFY_SERVICES_SID) 
-    
-    .notifications.create(notificationOpts) 
-    .then(notification => console.log(notification.sid)) 
-    .catch(error => console.log(error)); 
-
-    } 
-      
-    }
-    sendBulkMessages(mensaje,[numbers]); 
-    
+            
+                 
+            // Sending our custom message to all numbers 
+            // mentioned in array. 
+            sendBulkMessages(mensaje,[numeros]) // Example +919999999999 
+            
+            }
+            }
+            enviar();
     
     res.send('mensaje mandado');
 }
@@ -94,7 +107,7 @@ const postMessage = async(req,res) =>{
 
 
     const result = await sendMessage(req.body.message, req.body.phone)
-    
+
     console.log(result.sid)
     //15304268027‬
     await SMS.create({Body:req.body.message,To:req.body.phone })
