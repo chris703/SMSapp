@@ -98,7 +98,7 @@ const sendBulksms = async(req,res) =>{
             }
             enviar();
     
-    res.send('mensaje mandado');
+    res.send('DONE!');
 }
 
 const postMessage = async(req,res) =>{
