@@ -47,6 +47,7 @@ socket.on('new message',data =>{
 
     const body  = document.createElement('p')
     body.appendChild(document.createTextNode(data.Body))
+    body.style.color = "red";
 
     const from = document.createElement('span');
     from.appendChild(document.createTextNode(data.From));
