@@ -12,11 +12,11 @@ const client = require('twilio')(config.accountSid, config.authToken,config.noti
 const fs = require("fs");
 
 const { twiml } = require('twilio');
-const { file } = require('../app/routes');
+//const { file } = require('../app/routes');
 
 const {getSocket} = require ('../sockets')
 
-const {isLoggedIn}= require('../app/routes');
+//const {isLoggedIn}= require('../app/routes');
 
 const indexController = async (req,res) =>{
     const messages = await SMS.find().sort('-createdAt').lean();
@@ -55,7 +55,7 @@ const sendBulksms = async(req,res) =>{
                
                 //console.log(nombre);
             
-                var mensaje= "Hi " + nombre +  " I work with a group of investor who buys property in "+ ciudad + ". We purchased a property nearby and saw your house at " + direccion + ". Have you considered selling it recently for all cash?";
+                var mensaje=  
                // var mensaje = "Hi " + nombre +  " I'm a local investor here in "+ ciudad + ". I purchased a property nearby and saw your house at " + direccion + ". Have you considered selling recently?"; 
                 console.log( mensaje);
             
