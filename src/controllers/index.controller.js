@@ -55,7 +55,7 @@ const sendBulksms = async(req,res) =>{
                
                 //console.log(nombre);
             
-                var mensaje=  
+                var mensaje= "Hi " + nombre +  " I work with a group of investor who buys property in "+ ciudad+ ". We purchased a property nearby and saw your house at " + direccion + ". Have you considered selling it recently for all cash?" 
                // var mensaje = "Hi " + nombre +  " I'm a local investor here in "+ ciudad + ". I purchased a property nearby and saw your house at " + direccion + ". Have you considered selling recently?"; 
                 console.log( mensaje);
             
