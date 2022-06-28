@@ -11,16 +11,19 @@ async function sendMessage (body, phone){
     try {
         const message = await client.messages.create({
              to: phone,
-            from: '+12138949764',
-            body
+            from: '+19403504552',
+            //from: '+12138949764',
+            body,
         })
        //console.log(message)
         return message;
         
     } catch (error) {
-        console.log(error);
+        console.log( "aqui es el error" + error );
         
     }
+    console.log(message.from);
+
     
 }
 module.exports = {sendMessage};

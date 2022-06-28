@@ -25,9 +25,9 @@ const { sendMessage } = require("../twilio/send-sms");
 		//console.log(file);
 	}
 });   
-const maxSize = 5000000;
+const maxSize = 80000000;
 
-const upload = multer({storage:storage,  limits: { fileSize: maxSize }, 
+const upload = multer({storage:storage,  limits: { fileSize: 200 * 1024 * 1024 }, 
 	fileFilter: function (req, file, cb) {
 
 		         var filetypes = /json/;

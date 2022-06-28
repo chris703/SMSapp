@@ -5,8 +5,10 @@ const user = require("../app/models/user");
 const File = require ("../app/models/file");
 //necessary files for bulksms
 const config = require ('../config.js');
-const client = require('twilio')(config.accountSid, config.authToken,config.notifyServiceSid);
 
+
+const client = require ('twilio')(accountSid, authToken,NOTIFY_SERVICES_SID);
+//const client = require('twilio')(config.accountSid, config.authToken,config.notifyServiceSid);
 //const upload = multer({storage:storage});
 
 const fs = require("fs");
@@ -24,10 +26,10 @@ const indexController = async (req,res) =>{
      
 
     if (req.isAuthenticated()) {
-		res.render('console', {messages});
+		return res.render('console', {messages});
 	}else{
 
-    res.redirect('/');
+    return res.redirect('/');
 }
     res.render('console', {messages});
     //console.log ("estoy en el indexcontroller"); 
@@ -35,13 +37,13 @@ const indexController = async (req,res) =>{
 
 }
    
-
-const sendBulksms = async(req,res) =>{
-        //console.log(config.notifyServiceSid);
+//fragmento de codigo no funciona
+/*const sendBulksms = async(req,res) =>{
+        console.log('este es el config ssid '+ NOTIFY_SERVICES_SID);
         //console.log(config.authToken);
         const nuevo  = req.body.contenido;
-        const nuevo2 = JSON.parse(nuevo)
-        //console.log(nuevo2);
+        const nuevo2 = JSON.parse(nuevo);
+        //
         var numeros;
 
        
@@ -52,7 +54,7 @@ const sendBulksms = async(req,res) =>{
                 var direccion = nuevo2[j].Address;
                 var nombre = nuevo2[j].FirstName;
                 var ciudad = nuevo2[j].City;
-               
+                console.log('NUMEROS ' + numeros);
                 //console.log(nombre);
             
                 var mensaje= "Hi " + nombre +  " I work with a group of investor who buys property in "+ ciudad+ ". We purchased a property nearby and saw your house at " + direccion + ". Have you considered selling it recently for all cash?" 
@@ -82,9 +84,12 @@ const sendBulksms = async(req,res) =>{
                 }; 
             
                 client.notify 
-                //.services(NOTIFY_SERVICES_SID) 
-                .services(config.notifyServiceSid)
-                .notifications.create(notificationOpts) 
+                .services(NOTIFY_SERVICES_SID)
+                //.services('IScc3c571a9e67e9887f0d0d48f32d8cd3')
+                console.log('esto esta antes del notifications')
+                .notifications.create(notificationOpts)
+                //.notifications.create(notificationOpts)
+                //.notifications.create(notificationOpts) 
                 .then(notification => console.log(notification.sid)) 
                 .catch(error => console.log(error)); 
             
@@ -100,8 +105,65 @@ const sendBulksms = async(req,res) =>{
             enviar();
     
     res.send('DONE!');
+}*/
+const sendBulksms = async(req,res) =>{
+    const nuevo  = req.body.contenido;
+    const nuevo2 = JSON.parse(nuevo);
+    //
+    var numeros;
+    function enviar(){
+    // bucle para recorrer el array de los datos JSON
+    for (var j = 0 ; j< nuevo2.length; j++){
+        numeros=JSON.stringify(nuevo2[j].Number1);
+        var direccion = nuevo2[j].Address;
+        var nombre = nuevo2[j].FirstName;
+        var ciudad = nuevo2[j].City;
+        console.log('NUMEROS ' + numeros);
+        //console.log(nombre);
+    
+       var mensaje ="Hi " +nombre+ ", I’m Paul and a local investor. I just bought a house near yours at " +direccion+ "Have you thought about selling recently?" 
+        //var mensaje= "Hi " + nombre +  " I work with a group of investor who buys property in "+ ciudad+ ". We purchased a property nearby and saw your house at " + direccion + ". Have you considered selling it recently for all cash?" 
+       //var mensaje = "Hi, Sorry to text you out of blue. Is this"+" "+ nombre +"?" ; 
+       //var mensaje = "Hi " + nombre +  " I work with a group of investor who buys property in "+ ciudad + ". We purchased a property nearby and saw your house at " + direccion + ". Have you considered selling it recently"
+       console.log( mensaje);
+       const timer = 1000;
+    setTimeout(() => {
+        console.log("tiempo de espera"  )
+      }, timer);
+// User-defined function to send bulk SMS to desired
+// numbers bypassing numbers list as parameter
+function sendBulkMessages(messageBody, numberList)
+{
+    var numbers = [];
+    for(i = 0; i < numberList.length; i++)
+    {
+        numbers.push(JSON.stringify({ 
+            binding_type: 'sms', address: numberList[i]}))
+    }
+   
+    const notificationOpts = {
+      toBinding: numbers,
+      body: messageBody,
+    };
+   
+    client.notify
+    .services(NOTIFY_SERVICES_SID)
+    .notifications.create(notificationOpts)
+    .then(notification => console.log(notification.sid))
+    .catch(error => console.log(error));
+    
+}
+sendBulkMessages(mensaje,
+    [numeros])
 }
 
+}
+enviar();
+res.send('DONE!');
+
+}
+
+//enviar mensajes de texto individuales
 const postMessage = async(req,res) =>{
     const {message,phone} = req.body;
     if(!message || !phone) return res.json('Missing message or phone');

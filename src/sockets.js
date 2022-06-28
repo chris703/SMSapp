@@ -6,11 +6,11 @@ const connection = server=>{
     const io = sockedIO.listen(server);
 
     io.on('connection', newSocket => {
-        socket = newSocket
+        socket = newSocket;
 
-        console.log(newSocket.id)
+        console.log(newSocket.id + " este es mi socket");
     })
 
 }
 const getSocket = () => socket;
-module.exports = {connection, getSocket}
+module.exports = {connection, getSocket};
