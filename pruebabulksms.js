@@ -1,6 +1,4 @@
-ACCOUNT_SID = 'AC875307f64b4ca7ff113574240fd32e1a'
-AUTH_TOKEN = '8cc17215f0966f612e2c326e7c216b98'
-SERVICE_SID = 'IScc3c571a9e67e9887f0d0d48f32d8cd3'
+
 const client = require('twilio')(ACCOUNT_SID, AUTH_TOKEN);
 const nuevo = require('./src/public/file/test.json');
 console.log ('imprime algo' +nuevo);
