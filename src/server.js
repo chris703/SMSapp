@@ -11,7 +11,7 @@ const passport = require('passport');
 const flash = require('connect-flash');
 const cookieParser = require ('cookie-parser');
 const bodyParser = require ('body-parser');
-const session = require ('express-session');
+const session = require ('cookie-session'); // se cambio express-session 
  
 const uuid = require('uuidv4');
 //const { v4: uuidv4 } = require('uuid');
