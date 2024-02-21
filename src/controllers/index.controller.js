@@ -6,6 +6,7 @@ const File = require ("../app/models/file");
 //necessary files for bulksms
 const config = require ('../config.js');
 const NOTIFY_SERVICES_SID = 'IScc3c571a9e67e9887f0d0d48f32d8cd3';
+//const NOTIFY_SERVICES_SID = 'MG73a78b94bc027397982ce98c785246d2';
 const accountSid = 'AC875307f64b4ca7ff113574240fd32e1a';
 const authToken = '913a083d6a9307888ce913ffa0d8648f';
 
