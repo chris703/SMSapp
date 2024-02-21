@@ -126,8 +126,8 @@ const sendBulksms = async(req,res) =>{
         //console.log(nombre);
     
         //MENSAJE 2024
-       //var mensaje = "This is a test"
-       var mensaje = "Hi sorry for the random call my name is Ivan I'm a Local Buyer i saw your property in " + direccion
+       var mensaje = "Hi sorry for the random call my name is Ivan I'm a Local Buyer i saw your property in undefinedand i wonder if you have considered sell the property or at least receive an offer i can pay cash";
+       //var mensaje = "Hi sorry for the random call my name is Ivan I'm a Local Buyer i saw your property in " + direccion
          + "and i wonder if you have considered sell the property or at least receive an offer i can pay cash";
        // var mensaje = "Hi " + nombre + " my name is ivan I'm a Buyer.. I was driving and saw your house in " + direccion +" have you consider receiving some offer? ..If u are interesting please let me.know we can can discuss here or make an appointment to talk about it personally have a good day I will be pending of your answer";
        //var mensaje = "Hi " + nombre + " my name is ivan I'm a local real estate investor I was driving and saw your house in " + direccion +" have you considered receiving some cash offer? ..If u are interesting please let me.know we can can discuss here or make an appointment to talk about it personally have a good day I will be pending of your answer"
