@@ -22,7 +22,7 @@ async function sendMessage (body, phone){
         
     } catch (error) {
         console.log( "aqui es el error" + error );
-        
+        console.log("credenciales" + client);
     }
    console.log(message.from);
 
