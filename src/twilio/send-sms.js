@@ -1,7 +1,7 @@
 const config = require ('../config');
-//const client = require('twilio')('AC875307f64b4ca7ff113574240fd32e1a', 'e10b0722faf5682ef79293eb51185332');
+const client = require('twilio')('AC875307f64b4ca7ff113574240fd32e1a', 'e10b0722faf5682ef79293eb51185332');
 //const client = require('twilio')('AC875307f64b4ca7ff113574240fd32e1a', '913a083d6a9307888ce913ffa0d8648f');
-const client = require('twilio')(config.accountSid, config.authToken);
+//const client = require('twilio')(config.accountSid, config.authToken);
 
 /**
  * Send a SMS message
